@@ -1,0 +1,19 @@
+﻿@{
+// ! Desafio:
+// Use a cor preferida e use-a como cor de background desta página uando CSS
+// Exiba a lista de preferencias em uma lista não ordenada. Pesquise o método Split
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        @foreach(var key in Request.Cookies.AllKeys) {
+            <p>@Request.Cookies[key].Name : @Request.Cookies[key].Value</p>
+        }
+    </body>
+</html>

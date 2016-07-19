@@ -1,0 +1,71 @@
+﻿@{
+    /*
+    Cookies podem ser lidos tanto pelo servidor quanto pelo cliente.
+    São eficientes para armazenar dados *não* sensíveis da comunicação.
+    */
+
+    //! Desafio
+    // Crie um formulário para configurar os valores dos cookies "CorPreferida" e
+    // "Preferências" dinamicamente
+
+    // Duas Formas de se criar um cookie no lado do servidor
+    var cookieCor = new HttpCookie("CorPreferida");
+    cookieCor.Value = "#ccc";
+
+    // outra forma já definindo o valor
+    var cookiePrefs = new HttpCookie("Preferencias", "viagens, carros, computadores");
+
+    // Para adicionar os cookies na resposta
+    Response.Cookies.Add(cookieCor);
+    Response.Cookies.Add(cookiePrefs);
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        <em>Pressione F12</em>
+        <p>Observe no cabeçalho HTTP da resposta a presença do cookie</p>
+        <em>e na aba console digite:</em>
+        <p>document.cookie</p>
+        
+        <p>getCookie("CorPreferida")</p>
+        
+        <p>getCookie("Preferencias")</p>
+
+        <p>setCookie("MeuNome", *seu nome*)</p>
+
+        <br>
+        <p><a href="~/LeTodosCookies">Ler Todos os Cookies</a></p>
+    
+    
+        <script type="text/javascript">
+
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                var expires = "expires="+d.toUTCString();
+                document.cookie = cname + "=" + cvalue + "; " + expires;
+            }
+
+            function getCookie(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for(var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+        </script>
+    </body>
+</html>

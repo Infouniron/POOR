@@ -1,0 +1,16 @@
+﻿@{
+    // Remove apenas o registro de controle
+    //Session.Remove("UsuarioAutenticado");
+
+    /* ou */
+    
+    // Remove todos os valores armazenadas mas mantem a sessão ativa
+    //Session.RemoveAll();
+
+    /* ou */
+
+    // Remove completamente a sessão
+    Session.Abandon();
+
+    Response.Redirect("~/Session/");
+}

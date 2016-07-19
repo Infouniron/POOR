@@ -31,3 +31,9 @@ JSON
 * http://www.w3schools.com/json/
 * http://pt.wikipedia.org/wiki/JSON
 * http://www.devmedia.com.br/introducao-ao-formato-json/25275
+
+
+CDN Microsoft
+--
+
+* http://www.asp.net/ajax/cdn

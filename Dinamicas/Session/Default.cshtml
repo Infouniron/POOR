@@ -1,0 +1,20 @@
+﻿@{
+    bool? usuarioAutenticado = Session["UsuarioAutenticado"] as bool?;
+    
+    if (usuarioAutenticado == null || usuarioAutenticado == false) {
+        Response.Redirect("~/Session/Login");
+    }
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        <h1>Olá, seja bem vindo @Session["username"]</h1>
+        <p><a href="~/Session/Logout">Sair</a></p>
+    </body>
+</html>

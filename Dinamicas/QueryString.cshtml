@@ -1,0 +1,36 @@
+﻿@{
+    // Refatore o código:
+    // 1 - Traga para fora do html todas as operações de transformação e de cálculo
+    // 2 - deixe no html apenas verificações simples e exibição de valores
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        @if (
+            ! String.IsNullOrEmpty(Request.QueryString["nome"]) && 
+            ! String.IsNullOrEmpty(Request.QueryString["anoNasc"])
+        )
+        {
+            string nome = Request.QueryString["nome"].ToUpper();
+
+            int idade = DateTime.Now.Year - Request.QueryString["anoNasc"].AsInt();
+
+            <p>Olá <strong>@nome</strong></p>
+            <p>Você deve ter aproximadamente @idade anos</p>
+        }
+        else {
+            <h1>Informe seu nome:</h1>
+            <form action="" method="get">
+                Informe seu nome: <input name="nome" id="nome" value=""> <br>
+                Informe o ano de seu nascimento: <input name="anoNasc" id="anoNasc" value=""> <br>
+                <button type="submit">Enviar</button>
+            </form>
+        }
+    </body>
+</html>

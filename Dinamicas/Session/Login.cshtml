@@ -1,0 +1,56 @@
+﻿@{
+    bool? usuarioAutenticado = Session["UsuarioAutenticado"] as bool?;
+    
+    // já esta logado?
+    if (usuarioAutenticado == true) {
+        Response.Redirect("~/Session/");
+    }    
+
+    Validation.RequireField("username", "Informe seu nome de usuário");
+    Validation.RequireField("password", "Informe sua senha");
+
+    var db = new Dictionary<string, string> {
+      {"admin", "password"},
+      {"jorge", "professor"} // adicione seu usuário e sua senha
+    };
+
+    if (IsPost && Validation.IsValid())
+    {
+        string username = Request.Form["username"];
+        string password = Request.Form["password"];
+
+        if (db.ContainsKey(username) && db[username] == password) 
+        {
+            Session["UsuarioAutenticado"] = true;
+            Session["username"] = username;
+            
+            Response.Redirect("~/Session");
+        }
+        else 
+        {
+            Validation.AddFormError("Usuário e senha não conferem");
+        }
+    }
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        <form action="Login" method="post">
+            
+            @Html.ValidationSummary()
+
+            <input type="text" name="username" placeholder="Nome de Usuário"> 
+            @*@Html.ValidationMessage("username")*@ 
+            <input type="password" name="password" placeholder="Senha"> 
+            @*@Html.ValidationMessage("password")*@
+            <button>Login</button>
+        </form>
+
+    </body>
+</html>
