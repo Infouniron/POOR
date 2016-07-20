@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alterando Classes CSS com Javascript</title>
+
+    <style>
+        .pagina {
+            width: 640px;
+            margin: 0 auto;
+            font-family: Verdana;
+        }
+
+        ul#tarefas li {
+            border: 1px solid #ccc;
+            padding: 10px 35px;
+            cursor: pointer;
+            border-radius: 6px;
+            margin: 3px 0;
+            list-style: none;
+        }
+
+        ul#tarefas li.concluida {
+            background-color: #e7fbe7;
+            background-image: url("img/ok.png");
+            background-repeat: no-repeat;
+            background-position: 8px center;
+        }
+    </style>
+</head>
+<body>
+    <div class="pagina">
+        <ul id="tarefas">
+            <li>Compras de Supermercado</li>
+            <li>Pagar contas</li>
+            <li>Buscar filho na escola</li>
+        </ul>
+    </div>
+
+<script type="text/javascript">
+    /**
+     * https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
+     */
+    document.addEventListener("DOMContentLoaded", () => {
+        // tarefas NodeList
+        var tarefasNL = document.querySelectorAll("ul#tarefas li");
+
+        var tarefas = Array.from(tarefasNL);
+
+        tarefas.forEach((t) => {
+            t.addEventListener('click', () => {
+                // TODO: modifique para remover a classe, desmarcando a tarefa concluida, ver métodos "remove" e "toggle"
+                if (! t.classList.contains('concluida')) {
+                    t.classList.add('concluida');
+                }
+            });
+        });
+
+    });
+</script>
+</body>
+</html>
