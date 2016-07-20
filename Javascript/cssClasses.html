@@ -58,6 +58,7 @@
         tarefas.forEach((t) => {
             t.addEventListener('click', () => {
                 // TODO: modifique para remover a classe, desmarcando a tarefa concluida, ver métodos "remove" e "toggle"
+                // use o método confirm e verifique se realmente o usuário deseja marcar a tarefa como concluída.
                 if (! t.classList.contains('concluida')) {
                     t.classList.add('concluida');
                 }
