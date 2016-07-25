@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script type="text/javascript">
+            function dizOla() {
+                alert('olá');
+            }
+
+            function dizOi() {
+                alert('oi');
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Eventos Javascript (click)</h1>
+        <h2>Clique obstrusivo</h2>
+
+        <a href="javascript:dizOla()">Clique obstrusivo em um link</a>
+
+        <p>... também poderia ser feito assim:</p>
+
+        <button type="button" name="button" onclick="dizOla()">Diz Olá</button>
+
+        <h2>Clique não obstrusivo</h2>
+
+        <button type="button" name="button" id="btnDizOla">Diz Olá não obstrusivo</button>
+
+        <br>
+
+        <button type="button" name="button" id="btnDizVariasCoisas">Diz Várias coisas não obstrusivo</button>
+
+        <br>
+
+        <button type="button" name="button" id="btnRemoveEL_DizOi">Remove EventLister dizOi</button>
+
+        <br>
+
+        <button type="button" name="button" id="btnRemoveEL_DizOla">Remove EventLister dizOla</button>
+
+        <h3>Links externos</h3>
+
+        <ul>
+            <li><a href="http://www.w3schools.com/js/js_events.asp">http://www.w3schools.com/js/js_events.asp</a></li>
+            <li><a href="http://www.w3schools.com/js/js_htmldom_events.asp">http://www.w3schools.com/js/js_htmldom_events.asp</a></li>
+            <li><a href="http://www.w3schools.com/Js/js_events_examples.asp">http://www.w3schools.com/Js/js_events_examples.asp</a></li>
+            <li><a href="http://www.w3schools.com/tags/ref_eventattributes.asp">http://www.w3schools.com/tags/ref_eventattributes.asp</a></li>
+        </ul>
+
+
+<script type="text/javascript">
+
+    document.getElementById("btnDizOla").onclick = dizOla;
+
+    var btnDizVariasCoisas = document.getElementById("btnDizVariasCoisas");
+
+    btnDizVariasCoisas.addEventListener('click', dizOla);
+
+    btnDizVariasCoisas.addEventListener('click', dizOi);
+
+    document.getElementById("btnRemoveEL_DizOi").onclick = (event) => {
+        btnDizVariasCoisas.removeEventListener('click', dizOi);
+        alert("EventListener \"dizOi\" removido com sucesso");
+    };
+
+    document.getElementById("btnRemoveEL_DizOla").onclick = (event) => {
+        btnDizVariasCoisas.removeEventListener('click', dizOla);
+        alert("EventListener \"dizOla\" removido com sucesso");
+    };
+
+</script>
+    </body>
+</html>
